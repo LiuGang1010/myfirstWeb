@@ -54,7 +54,7 @@ public class UserController {
     @RequestMapping(value = "/testfindall",method = RequestMethod.GET)
     public String testfindAll(){
         List<User> list=userService.findAll();
-        System.out.println(list);
+        log.info("find all user ({})",list);
         return "success";
     }
 
