@@ -17,6 +17,7 @@
     <context:annotation-config/>
     <!--扫描之后，就可以注入需要的bean-->
     <context:component-scan base-package="com.sankuai.meituan.web"/>
+
     <!--加载外在属性配置文件，在之后的bean定义时，就可以引用外在定义的属性值了-->
     <context:property-placeholder location="classpath:conf/database.properties"/>
     <!--配置数据源-->
@@ -50,8 +51,8 @@
     </bean>
     <!--配置MapperScaner,是的Autowired生效-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="basePackage" value="com.sankuai.meituan.web.dao"></property>
-    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+        <property name="basePackage" value="com.sankuai.meituan.web.dao"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
    </bean>
 
     <!-- ①配置事务管理器:负责声明式事务管理，引用了dataSource Bean -->
