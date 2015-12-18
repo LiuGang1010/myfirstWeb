@@ -63,7 +63,6 @@
     <!-- 使用annotation定义数据库事务，这样可以在类或方法中直接使用@Transactional注解来声明事务 -->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
-    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
     <!-- ②通过AOP配置提供事务增强，让Service包下所有Bean的所有方法拥有事务 -->
     <aop:config proxy-target-class="true">
         <!-- ③AOP切入点 -->
