@@ -66,9 +66,9 @@
     <!-- ②通过AOP配置提供事务增强，让Service包下所有Bean的所有方法拥有事务 -->
     <aop:config proxy-target-class="true">
         <!-- ③AOP切入点 -->
-        <aop:pointcut id="serviceMethod" expression="execution(public * com.sankuai.meituan.web.service.*.*(..))"/>
+        <aop:pointcut id="pointcut" expression="execution(public * com.sankuai.meituan.web.service.*.*(..))"/>
         <!-- ④Spring Advisor类似拦截器 -->
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
     </aop:config>
     <!-- ⑤AOP通知 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
