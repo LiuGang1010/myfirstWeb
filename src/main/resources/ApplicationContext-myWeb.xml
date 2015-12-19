@@ -56,23 +56,14 @@
    </bean>
 
 
-    <!-- ①配置事务管理器:负责声明式事务管理，引用了dataSource Bean -->
+    <!-- 1、配置事务管理器:负责声明式事务管理，引用了dataSource Bean -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
-    <!-- 使用annotation定义数据库事务驱动，这样就可以在需要进行事务管理的类或方法中直接使用@Transactional注解来声明事务 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
-
-
-    <!-- ②通过AOP配置提供事务增强，让Service包下所有Bean的所有方法拥有事务 -->
-    <aop:config proxy-target-class="true">
-        <!-- ③AOP切入点 -->
-        <aop:pointcut id="pointcut" expression="execution(public * com.sankuai.meituan.web.service.*.*(..))"/>
-        <!-- ④Spring Advisor类似拦截器 -->
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
-    </aop:config>
-    <!-- ⑤AOP通知 -->
+    <!-- 2、使用annotation定义数据库事务驱动，这样就可以在需要进行事务管理的类或方法中直接使用@Transactional注解来声明事务 -->
+    <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
+    <!-- 2、事务属性-->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <tx:method name="save*" propagation="REQUIRED"/>
@@ -90,5 +81,16 @@
             <tx:method name="*" read-only="true"/>
         </tx:attributes>
     </tx:advice>
+
+
+    <!-- 3、AOP配置，并提供事务增强，让Service包下所有Bean的所有方法拥有事务 -->
+    <aop:config proxy-target-class="true">
+        <!-- 3.1、AOP切入点 -->
+        <aop:pointcut id="pointcut" expression="execution(public * com.sankuai.meituan.web.service.*.*(..))"/>
+        <!-- 3.2、Spring Advisor类似拦截器，把事务切入点和事务属性关联起来 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+    </aop:config>
+
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 </beans>
