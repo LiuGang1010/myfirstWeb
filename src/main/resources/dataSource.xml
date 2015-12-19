@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+       <!--配置数据源-->
+       <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+              <property name="url" value="${jdbc.url}" />
+              <property name="username" value="${jdbc.username}"/>
+              <property name="password" value="${jdbc.password}"/>
+              <!-- 配置初始化大小、最小、最大 -->
+              <property name="initialSize"><value>1</value></property>
+              <property name="maxActive"><value>5</value></property>
+              <property name="minIdle"><value>1</value></property>
+              <!-- 配置获取连接等待超时的时间 -->
+              <property name="maxWait"><value>60000</value></property>
+              <!-- 配置监控统计拦截的filters -->
+              <property name="filters"><value>stat</value></property>
+              <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+              <property name="timeBetweenEvictionRunsMillis"><value>60000</value></property>
+              <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+              <property name="minEvictableIdleTimeMillis"><value>300000</value></property>
+       </bean>
+
+       <!-- mybatis配置 -->
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="dataSource" />
+              <property name="configLocation" value="classpath:mybatis-config.xml"/>
+       </bean>
+
+       <!-- 配置sqlSessionTemplate -->
+       <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+              <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+       </bean>
+       <!--配置MapperScaner,是的Autowired生效-->
+       <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+              <property name="basePackage" value="com.sankuai.meituan.web.dao"></property>
+              <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+       </bean>
+
+
+       <!-- 1、配置事务管理器:负责声明式事务管理，引用了dataSource Bean -->
+       <bean id="transactionManager"
+             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+              <property name="dataSource" ref="dataSource" />
+       </bean>
+       <!-- 2、使用annotation注解方式定义数据库事务驱动，这样就可以在需要进行事务管理的类或方法中直接使用@Transactional注解来声明事务 -->
+       <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
+       <!-- 2、配置事务属性-->
+       <tx:advice id="txAdvice" transaction-manager="transactionManager">
+              <tx:attributes>
+                     <tx:method name="save*" propagation="REQUIRED"/>
+                     <tx:method name="insert*" propagation="REQUIRED"/>
+                     <tx:method name="add*" propagation="REQUIRED"/>
+                     <tx:method name="update*" propagation="REQUIRED"/>
+                     <tx:method name="delete*" propagation="REQUIRED"/>
+                     <tx:method name="remove*" propagation="REQUIRED"/>
+                     <tx:method name="execute*" propagation="REQUIRED"/>
+                     <tx:method name="get*" read-only="true"/>
+                     <tx:method name="find*" read-only="true"/>
+                     <tx:method name="*" read-only="true"/>
+              </tx:attributes>
+       </tx:advice>
+
+
+       <!-- 3、AOP配置，配置个事务切面告知程序哪些包下哪些Bean的方法拥有该事务 -->
+       <aop:config proxy-target-class="true">
+              <!-- 3.1、AOP切入点 -->
+              <aop:pointcut id="pointcut" expression="execution(public * com.sankuai.meituan.web.service.*.*(..))"/>
+              <!-- 3.2、Spring Advisor类似拦截器，把事务切入点和事务属性关联起来 -->
+              <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+       </aop:config>
+
+       <aop:aspectj-autoproxy/>
+</beans>
