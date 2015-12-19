@@ -72,12 +72,9 @@
             <tx:method name="update*" propagation="REQUIRED"/>
             <tx:method name="delete*" propagation="REQUIRED"/>
             <tx:method name="remove*" propagation="REQUIRED"/>
-            <tx:method name="accept*" propagation="REQUIRED"/>
-            <tx:method name="reject*" propagation="REQUIRED"/>
             <tx:method name="execute*" propagation="REQUIRED"/>
-            <tx:method name="del*" propagation="REQUIRED"/>
-            <tx:method name="recover*" propagation="REQUIRED"/>
-            <tx:method name="sync*" propagation="REQUIRED"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
             <tx:method name="*" read-only="true"/>
         </tx:attributes>
     </tx:advice>
