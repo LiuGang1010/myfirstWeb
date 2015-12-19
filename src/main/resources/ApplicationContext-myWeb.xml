@@ -55,13 +55,15 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
    </bean>
 
+
     <!-- ①配置事务管理器:负责声明式事务管理，引用了dataSource Bean -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
-    <!-- 使用annotation定义数据库事务，这样可以在类或方法中直接使用@Transactional注解来声明事务 -->
+    <!-- 使用annotation定义数据库事务驱动，这样就可以在需要进行事务管理的类或方法中直接使用@Transactional注解来声明事务 -->
     <tx:annotation-driven transaction-manager="transactionManager" />
+
 
     <!-- ②通过AOP配置提供事务增强，让Service包下所有Bean的所有方法拥有事务 -->
     <aop:config proxy-target-class="true">
