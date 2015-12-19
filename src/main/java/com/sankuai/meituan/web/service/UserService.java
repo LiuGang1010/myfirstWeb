@@ -27,7 +27,7 @@ public class UserService {
         return affect;
     }
 
-    @Transactional
+//    @Transactional
     public int update(User user){
         int affect=userDao.update(user);
         return affect;
