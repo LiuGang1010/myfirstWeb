@@ -1,12 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
 <html>
 <head id="Head1" runat="server">
-    <title>点击按钮通过ajax同步获取数据并渲染图表示例</title>
-    <script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
-    <script src="js/esl.js" type="text/javascript"></script>
+    <title>出餐时间概率分布</title>
+    <script src="../../js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="../../js/esl.js" type="text/javascript"></script>
     <!-- ECharts单文件引入 -->
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 </head>
@@ -17,55 +15,40 @@
 <div id="main" style="height: 400px; border: 1px solid #ccc; padding: 10px;">
 </div>
 <br>
-<%
-    List<String> list=new ArrayList<String>();
-    list.add("12131");
-    list.add("211");
-    list.add("4432");
-    request.setAttribute("list",list);
-%>
-<input type="button" value="更新报表数据" onclick="GetAjaxChartData()"/>&nbsp;&nbsp;
-<%--商家Id:<input type="text" name="platform_poi_id"/>--%>
-商家Id:
-<select name="poi" id="poi">
-    <c:forEach items="${list}" var="platform_poi_id">
-        <option>${platform_poi_id}</option>
-    </c:forEach>
-</select>
+<input type="button" value="更新报表数据" onclick="GetAjaxChartData()"/>
 
 <script type="text/javascript" language="javascript">
 
     var myChart;
     require.config({
         paths : {
-            echarts: 'http://echarts.baidu.com/build/dist'
+            echarts:'http://echarts.baidu.com/build/dist'
         }
     });
+
     require(
             [
                 'echarts',
-                'echarts/chart/line' //按需加载图表关于线性图、折线图的部分
+                'echarts/chart/line', //按需加载图表关于线性图、折线图的部分
+                'echarts/chart/bar'
             ],
             DrawEChart //异步加载的回调函数绘制图表
     );
 
     //创建ECharts图表方法
     function DrawEChart(ec) {
-        //--- 折柱 ---
         myChart = ec.init(document.getElementById('main'));
-
         //定义图表options
         var options = {
             title : {
-                text : "出餐时间概率分布",
-                subtext : "纯属虚构",
-                sublink : "http://www.baidu.com"
+                text : "时间概率分布"
+//                subtext : "午高峰"
             },
             tooltip : {
                 trigger : 'axis'
             },
             legend : {
-                data : ['PDF']
+                data : ['PDF','P']
             },
             toolbox : {
                 show : true,
@@ -97,30 +80,36 @@
             } ],
             yAxis : [ {
                 type : 'value',
-                axisLabel : {
-                    formatter : '{value}'
-                },
                 splitArea : {
                     show : true
-                }
+                },
+                scale: true,
+                precision: 2,
+                splitNumber: 6,
+                splitArea: { show: true }
             } ],
             grid : {
-                width : '90%'
+                width : '60%'
             },
             series : [
                 {
                 name : 'PDF',
                 type : 'line',
-                data : [ 11, 22, 33, 44, 55, 33, 44 ]
+                data : [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ]
+                },
+                {
+                    name : 'P',
+                    type : 'line',
+                    data : [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ]
                 }
             ]
         };
-        myChart.setOption(options); //先把可选项注入myChart中
+        myChart.setOption(options); //初始可选项注入myChart中
         myChart.hideLoading();
-       // GetAjaxChartData();//ajax后台交互
+       GetAjaxChartData();
     }
 
-    ///点击按钮获取图表数据采用ajax方式
+    //点击按钮获取图表数据采用ajax方式
     function GetAjaxChartData() {
         //获得图表的options对象
         var options = myChart.getOption();
@@ -129,13 +118,11 @@
             type: "post",
             async: false, //同步执行
             url: "/echarts/line_data",
-            data : {},
+            data : null,
             dataType: "json", //返回数据形式为json
             success: function (result) {
                 if (result) {
-//                    alert(result);
                     //将返回的category和series对象赋值给options对象内的category和series
-                    //因为xAxis是一个数组 这里需要是xAxis[i]的形式
                     options.xAxis[0].data = result.category;
                     options.series = result.series;
                     options.legend.data = result.legend;
@@ -144,7 +131,7 @@
                 }
             },
             error: function (errorMsg) {
-                alert("对不起,图表请求数据失败啦!");
+                alert("对不起,报表请求数据失败!");
             }
         });
     }

@@ -1,13 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
     <title>首页</title>
-
 </head>
 
 <body>
-
     <a href="/testdelete?id=4">删除用户</a><br>
     <a href="/testfind?id=2">返回指定用户</a><br>
     <a href="/testfindall">返回所有用户</a><br><br>
