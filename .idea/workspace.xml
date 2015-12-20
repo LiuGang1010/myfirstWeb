@@ -8,27 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebd29a3-8070-428b-a259-3d708f7969f3" name="Default" comment="Merge branch 'dev'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/404.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/500.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/dataSource.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/jetty-context.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/404.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/500.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/mushroom.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/echarts.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/echarts.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/target/myfirstWeb/echarts.jsp" afterPath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/views/echarts.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/sankuai/meituan/web/controller/EChartsController.class" afterPath="$PROJECT_DIR$/target/classes/com/sankuai/meituan/web/controller/EChartsController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/com/sankuai/meituan/web/controller/EChartsController.class" afterPath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/com/sankuai/meituan/web/controller/EChartsController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/sankuai/meituan/web/service/UserService.class" afterPath="$PROJECT_DIR$/target/classes/com/sankuai/meituan/web/service/UserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/com/sankuai/meituan/web/service/UserService.class" afterPath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/com/sankuai/meituan/web/service/UserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ApplicationContext-myWeb.xml" afterPath="$PROJECT_DIR$/target/classes/ApplicationContext-myWeb.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/ApplicationContext-myWeb.xml" afterPath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/ApplicationContext-myWeb.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sankuai/meituan/web/controller/EChartsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/sankuai/meituan/web/controller/EChartsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dataSource.xml" afterPath="$PROJECT_DIR$/target/classes/dataSource.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/webmvc-config.xml" afterPath="$PROJECT_DIR$/target/classes/webmvc-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/webmvc-config.xml" afterPath="$PROJECT_DIR$/target/myfirstWeb/WEB-INF/classes/webmvc-config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="3a9d766a-7d37-417b-a19a-159221c87e91" name="Failed commit: Default" comment="my first commit for myfirstWeb" />
@@ -84,21 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1035">
+            <state vertical-scroll-proportion="0.7274827" vertical-offset="360" max-vertical-offset="1035">
               <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.1904764" vertical-offset="22630" max-vertical-offset="27540">
-              <caret line="1710" column="16" selection-start-line="1710" selection-start-column="16" selection-end-line="1710" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -1115,7 +1084,7 @@
       <workItem from="1450433296509" duration="3859000" />
       <workItem from="1450507611344" duration="3686000" />
       <workItem from="1450526375664" duration="1036000" />
-      <workItem from="1450595115030" duration="813000" />
+      <workItem from="1450595115030" duration="1077000" />
     </task>
     <task id="LOCAL-00001" summary="my first commit for myfirstWeb">
       <created>1450074924613</created>
@@ -1187,7 +1156,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100512000" />
+    <option name="totallyTimeSpent" value="100776000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1707,18 +1676,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1035">
-          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="7.1904764" vertical-offset="22630" max-vertical-offset="27540">
           <caret line="1710" column="16" selection-start-line="1710" selection-start-column="16" selection-end-line="1710" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7274827" vertical-offset="360" max-vertical-offset="1035">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
           <folding />
         </state>
       </provider>
