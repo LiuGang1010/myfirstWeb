@@ -42,7 +42,6 @@
         var options = {
             title : {
                 text : "时间概率分布"
-//                subtext : "午高峰"
             },
             tooltip : {
                 trigger : 'axis'
